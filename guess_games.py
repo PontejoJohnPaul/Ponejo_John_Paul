@@ -24,7 +24,7 @@ def guess_the_word():
     word, clue = choose_word()  
     # Store your guessed letters
     guessed_letters = [] 
-    # Number of your attemps
+    # Number of your attemps in word guess
     attempts = 6
     
     print("Welcome to 'Guess the Word' game!")
@@ -88,17 +88,19 @@ def guess_the_number():
         if level == '1':
             number_to_guess = random.randint(1, 15)
             break
-        # level 2 50 - 70
+        # level 2 20 - 40
         elif level == '2':
             number_to_guess = random.randint(20, 40)
             break
-        # level 3 99 - 120
+        # level 3 60 - 100
         elif level == '3':
             number_to_guess = random.randint(60, 100)
             break
         else:
+            # If users input is invalid
             print("Invalid choice. Please choose  ([1], [2], [3]). ")
 
+    # Numbers of attemps in Guess number
     attempts = 10
     print(f"Welcome to 'Guess the Number' game!")
     print("----------------------------------")
