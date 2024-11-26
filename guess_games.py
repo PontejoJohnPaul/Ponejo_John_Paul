@@ -24,7 +24,7 @@ def guess_the_word():
     word, clue = choose_word()  
     # Store your guessed letters
     guessed_letters = [] 
-    # Number of your attemps in word guess
+    # Number of your attemps
     attempts = 6
     
     print("Welcome to 'Guess the Word' game!")
@@ -88,19 +88,17 @@ def guess_the_number():
         if level == '1':
             number_to_guess = random.randint(1, 15)
             break
-        # level 2 20 - 40
+        # level 2 50 - 70
         elif level == '2':
             number_to_guess = random.randint(20, 40)
             break
-        # level 3 60 - 100
+        # level 3 99 - 120
         elif level == '3':
             number_to_guess = random.randint(60, 100)
             break
         else:
-            # If users input is invalid
             print("Invalid choice. Please choose  ([1], [2], [3]). ")
 
-    # Numbers of attemps in Guess number
     attempts = 10
     print(f"Welcome to 'Guess the Number' game!")
     print("----------------------------------")
@@ -109,7 +107,64 @@ def guess_the_number():
        
 # Function for the Guess the Map game
 def guess_the_map():
-    pass
+    # List of cities and their clues
+    cities = [
+        ("paris", "The city of love, known for the Eiffel Tower."),
+        ("london", "Capital city of the UK, famous for the Big Ben."),
+        ("tokyo", "Capital of Japan, known for its technology and cherry blossoms."),
+        ("new york", "City that never sleeps, home of the Statue of Liberty."),
+        ("sydney", "Known for the Opera House and Harbour Bridge in Australia."),
+    ]
+
+    # Randomly select a city and its clue
+    city, clue = random.choice(cities)
+    
+    # Store your guessed letters and attempts
+    guessed_letters = []
+    attempts = 5  # Set a lower number of attempts for a guessing game like this
+
+    print("Welcome to 'Guess the Map' game!")
+    print("----------------------------------")
+    print(f"You have {attempts} attempts!")
+    print(f"Clue: {clue}")
+
+    while attempts > 0:
+        # Display the city name with blanks for unguessed letters
+        display_city = ''.join([letter if letter in guessed_letters else '_' for letter in city])
+        print(f"\nCity to guess: {display_city}")
+        print(f"You have {attempts} attempts left.")
+        
+        # Ask for user input
+        print("----------------------------------")
+        guess = input("Enter a letter: ").lower()
+        print("----------------------------------")
+
+        # Check if input is only a single letter
+        if len(guess) != 1 or not guess.isalpha():
+            print("Please enter a single letter.")
+            continue
+        
+        # Check if the letter has already been guessed
+        if guess in guessed_letters:
+            print(f"You've already guessed the letter '{guess}'. Try a different one.")
+            continue
+        
+        # Add guessed letter to the list
+        guessed_letters.append(guess)
+
+        # Check if the guessed letter is in the city name
+        if guess in city:
+            print(f"Great job! The letter '{guess}' is in the city.")
+        else:
+            attempts -= 1
+            print(f"Oops! The letter '{guess}' is not in the city.")
+
+        # Check if the player has guessed all letters in the city name
+        if all(letter in guessed_letters for letter in city):
+            print(f"Congratulations! You've guessed the city: {city}. Well done!")
+            break
+    else:
+        print(f"Game Over! The city was: {city}")
 
 # Main choice to select the game you want to play
 def main_choice():
