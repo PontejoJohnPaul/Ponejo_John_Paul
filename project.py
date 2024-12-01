@@ -1,4 +1,5 @@
 import random
+import emoji
 
 # List of words to guess from and their clues
 word_list = [
@@ -64,12 +65,12 @@ def guess_the_word():
 
         # Function that check if player has guessed all letters
         if all(letter in guessed_letters for letter in word):
-            print(f"Congratulations! You've guessed the word: {word} you are genius")
+            print(emoji.emojize(f"Congratulations! You've guessed the word: {word}. You are a genius :thumbs_up:"))
             print("----------------------------------")
             break
     else:
         # Print if the attempts of user became 0
-        print(f"Game Over! The word was: {word}")
+        print (emoji.emojize(f"Game Over! The word was: {word}! :thumbs_down:"))
 
 # Function for the Guess the Number game
 def guess_the_number():
@@ -129,7 +130,7 @@ def guess_the_number():
 
         # Check if the guess is correct
         if guess == number_to_guess:
-            print(f"Congratulations! You've guessed the number {number_to_guess}!")
+            print(emoji.emojize(f"Congratulations! You've guessed the number {number_to_guess}!:thumbs_up:"))
             break
         else:
             attempts -= 1
@@ -139,7 +140,7 @@ def guess_the_number():
                 print("Your guess is too high!")
             print(f"You have {attempts} attempts left.")
     else:
-        print(f"Game Over! The number was: {number_to_guess}")
+        print(emoji.emojize(f"Game Over! The number was: {number_to_guess}! :thumbs_down:"))
 
 # Function for the Guess the Map game
 def guess_the_map():
@@ -148,7 +149,7 @@ def guess_the_map():
         ("paris", "The city of love, known for the Eiffel Tower."),
         ("london", "Capital city of the UK, famous for the Big Ben."),
         ("tokyo", "Capital of Japan, known for its technology and cherry blossoms."),
-        ("new york", "City that never sleeps, home of the Statue of Liberty."),
+        ("newyork", "City that never sleeps, home of the Statue of Liberty."),
         ("sydney", "Known for the Opera House and Harbour Bridge in Australia."),
     ]
 
@@ -197,10 +198,10 @@ def guess_the_map():
 
         # Check if the player has guessed all letters in the city name
         if all(letter in guessed_letters for letter in city):
-            print(f"Congratulations! You've guessed the city: {city}. Well done!")
+            print (emoji.emojize(f"Congratulations! You've guessed the city: {city}. Well done!:thumbs_up:"))
             break
     else:
-        print(f"Game Over! The city was: {city}")
+        print (emoji.emojize(f"Game Over! The city was: {city}! :thumbs_down:"))
 
 # Main choice to select the game you want to play
 def main_choice():
