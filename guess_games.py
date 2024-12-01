@@ -2,7 +2,7 @@ import random
 
 # List of words to guess from and their clues
 word_list = [
-    ("pyhton", "It's a Snake."),
+    ("python", "It's a Snake."),
     ("java", "It's a Coffee."),
     ("ruby", "It's a Red Diamond."),
     ("html", "Web Development"),
