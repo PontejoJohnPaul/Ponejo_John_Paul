@@ -19,7 +19,7 @@ def choose_word():
 def display_word(word, guessed_letters):
     return ''.join([letter if letter in guessed_letters else '_' for letter in word])
 
-# Function for the Guess the Word game
+# Method for the Guess the Word game
 def guess_the_word():
     # Choose a random word and its clue
     word, clue = choose_word()
@@ -33,11 +33,12 @@ def guess_the_word():
     print(f"You got {attempts} attempts!")
     print(f"Clue: {clue}")
 
+    # Display the word you need to guess and its currently a under score
     while attempts > 0:
         print("\nWord to guess: " + display_word(word, guessed_letters))
         print(f"You have {attempts} attempts left.")
 
-        # Ask for user input
+        # Ask for user input letter
         print("----------------------------------")
         guess = input("Enter a letter: ").lower()
         print("----------------------------------")
@@ -51,7 +52,8 @@ def guess_the_word():
         if guess in guessed_letters:
             print(f"You've already guessed the letter '{guess}'. Try a different one.")
             continue
-
+        
+        # Adds the guessed letter to the list of guessed_letters
         guessed_letters.append(guess)
 
         # Function that check if the user guess the rigth letter in the word
@@ -70,7 +72,7 @@ def guess_the_word():
             break
     else:
         # Print if the attempts of user became 0
-        print (emoji.emojize(f"Game Over! The word was: {word}! :thumbs_down:"))
+        print (f"Game Over! The word was: {word}!")
 
 # Function for the Guess the Number game
 def guess_the_number():
@@ -100,6 +102,7 @@ def guess_the_number():
         else:
             print("Invalid choice. Please choose ([1], [2], [3]). ")
 
+    # Number of attemps
     attempts = 10
     print(f"Welcome to 'Guess the Number' game!")
     print("----------------------------------")
@@ -115,6 +118,7 @@ def guess_the_number():
             print("Please enter a valid number.")
             continue
 
+        # Converts the input to an integer
         guess = int(guess)
 
         # Check if guess is within the range of the level
@@ -140,7 +144,7 @@ def guess_the_number():
                 print("Your guess is too high!")
             print(f"You have {attempts} attempts left.")
     else:
-        print(emoji.emojize(f"Game Over! The number was: {number_to_guess}! :thumbs_down:"))
+        print (f"Game Over! The number was: {number_to_guess}!")
 
 # Function for the Guess the Map game
 def guess_the_map():
@@ -201,35 +205,42 @@ def guess_the_map():
             print (emoji.emojize(f"Congratulations! You've guessed the city: {city}. Well done!:thumbs_up:"))
             break
     else:
-        print (emoji.emojize(f"Game Over! The city was: {city}! :thumbs_down:"))
+        print (f"Game Over! The city was: {city}! ")
 
 # Main choice to select the game you want to play
 def main_choice():
-    print("----------------------------------")
-    print("Welcome to the Guessing Game!")
-    print("----------------------------------")
-    print("Choose type of Game:\n")
-    print("[1] Guess the Programming Language")
-    print("[2] Guess the Number")
-    print("[3] Guess the City")
-    print("\n----------------------------------")
-
     while True:
-        choice = input("Enter Choice ([1], [2], [3]): ")
-        print("__________________________________")
         print("----------------------------------")
+        print("Welcome to the Guessing Game!")
+        print("----------------------------------")
+        print("Choose type of Game:\n")
+        print("[1] Guess the Programming Language")
+        print("[2] Guess the Number")
+        print("[3] Guess the City")
+        print("\n----------------------------------")
 
-        if choice == "1":
-            guess_the_word()
+        while True:
+            choice = input("Enter Choice ([1], [2], [3]): ")
+            print("__________________________________")
+            print("----------------------------------")
+
+            if choice == "1":
+                guess_the_word()
+                break
+            elif choice == "2":
+                guess_the_number()
+                break
+            elif choice == "3":
+                guess_the_map()
+                break
+            else:
+                print("Invalid choice. Please choose ([1], [2], [3]).")
+
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("----------------------------------")
+            print("Thanks for playing! Goodbye!")
             break
-        elif choice == "2":
-            guess_the_number()
-            break
-        elif choice == "3":
-            guess_the_map()
-            break
-        else:
-            print("Invalid choice. Please choose ([1], [2], [3]).")
 
 if __name__ == "__main__":
     main_choice()
