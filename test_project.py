@@ -1,24 +1,38 @@
 import pytest
-from project import guess_the_word, guess_the_number, guess_the_map
+from unittest.mock import patch
+from project import choose_word, choose_city
 
+# Test for choose_word function
+def test_choose_word():
+    # Mock the word list with specific content
+    mock_word_list = [
+        ("python", "A snake or a programming language"),
+        ("java", "A coffee drink"),
+        ("ruby", "A red gemstone")
+    ]
+    
+    # Patch the load_word_list function to return the mock list
+    with patch('project.load_word_list', return_value=mock_word_list):
+        word, clue = choose_word()
+        
+        # Assert that the word chosen is from the mock list
+        assert (word, clue) in mock_word_list
 
-def test_guess_the_word():
-    assert guess_the_word("python", "It's a Snake.") == True
-    assert guess_the_word("java", "It's a Coffee.") == True
-    assert guess_the_word("ruby", "It's a Red Diamond.") == True
-    assert guess_the_word("html", "Web Development") == True
-    assert guess_the_word("machine", "1 or 0 coding.") == True
-    assert guess_the_word("basket", "It's a container used for storing clean or dirty clothes.") == True
-
-def test_guess_the_number():
-    pass
-
-def test_guess_the_map():
-    assert guess_the_map("paris", "The city of love, known for the Eiffel Tower.") == True
-    assert guess_the_map("london", "Capital city of the UK, famous for the Big Ben.") == True
-    assert guess_the_map("tokyo", "Capital of Japan, known for its technology and cherry blossoms.") == True
-    assert guess_the_map("newyork", "City that never sleeps, home of the Statue of Liberty.") == True
-    assert guess_the_map("sydney", "Known for the Opera House and Harbour Bridge in Australia.") == True
+# Test for choose_city function
+def test_choose_city():
+    # Mock the city list with specific content
+    mock_city_list = [
+        ("paris", "Capital of France"),
+        ("london", "Capital of England"),
+        ("tokyo", "Capital of Japan")
+    ]
+    
+    # Patch the load_city_list function to return the mock list
+    with patch('project.load_city_list', return_value=mock_city_list):
+        city, clue = choose_city()
+        
+        # Assert that the city chosen is from the mock list
+        assert (city, clue) in mock_city_list
 
 if __name__ == "__main__":
     pytest.main()
